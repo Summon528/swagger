@@ -115,6 +115,7 @@ export function replaceImportPath(typeReference: string, fileName: string) {
   if (!typeReference.includes('import')) {
     return typeReference;
   }
+  typeReference = JSON.parse('"' + typeReference.replace(/\"/g, '\\"') + '"');
   let importPath = /\(\"([^)]).+(\")/.exec(typeReference)[0];
   if (!importPath) {
     return undefined;
